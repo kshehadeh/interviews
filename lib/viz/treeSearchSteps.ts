@@ -1,18 +1,5 @@
 import type { ComponentNode } from '../types';
 
-/** Pre-order (top-to-bottom, left-to-right) list of nodes */
-export function flattenPreOrder(root: ComponentNode): ComponentNode[] {
-  const result: ComponentNode[] = [];
-  function visit(node: ComponentNode) {
-    result.push(node);
-    if (node.children) {
-      for (const child of node.children) visit(child);
-    }
-  }
-  visit(root);
-  return result;
-}
-
 export type TreeSearchStep =
   | { type: 'visit'; node: ComponentNode; resultSoFar: ComponentNode[] }
   | { type: 'done'; result: ComponentNode[]; targetType: string; matches: ComponentNode[] };

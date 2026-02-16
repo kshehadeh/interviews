@@ -1,6 +1,6 @@
 /** Step types for min-window visualization */
 
-export interface NeedMap {
+interface NeedMap {
   [ch: string]: number;
 }
 

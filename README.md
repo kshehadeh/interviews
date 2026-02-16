@@ -5,15 +5,15 @@ A React + TypeScript web app that visualizes each solution with animations, O-no
 ## Run locally
 
 ```bash
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000). Build for production with `npm run build`; run with `npm start`.
+Then open [http://localhost:3000](http://localhost:3000). Build for production with `bun run build`; run with `bun run start`.
 
 ## Structure
 
-- **Stack**: Next.js (App Router), React 18, TypeScript.
+- **Stack**: Next.js (App Router), React 19, TypeScript.
 - **Table of contents** (`components/Toc.tsx`): Lists each problem; under each problem, links to every solution. Green dot = good solution, red dot = suboptimal.
 - **Solution pages** (e.g. `/sliding-text-window/solution1`): Title, complexity (time/space), verdict, explanation, and an **animation** with Play/Pause, Step, Reset, and speed control.
 - **Data** (`lib/data.ts`): Problem and solution metadata. Types live in `lib/types.ts`.
