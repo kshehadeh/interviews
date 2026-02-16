@@ -42,6 +42,86 @@ a:hover {
   padding: 2rem;
 }
 
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.app-nav a {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.app-nav a:hover {
+  text-decoration: none;
+  color: var(--accent-dim);
+}
+
+/* ----- Home / landing ----- */
+.home {
+  max-width: 640px;
+}
+
+.home-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.home-subtitle {
+  color: var(--muted);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.home-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 560px) {
+  .home-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.home-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+
+.home-card:hover {
+  border-color: var(--accent);
+  background: rgba(124, 156, 255, 0.08);
+  text-decoration: none;
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.home-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.home-card-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
 /* ----- Table of contents ----- */
 .toc {
   margin-bottom: 3rem;
@@ -234,6 +314,76 @@ a:hover {
   color: var(--muted);
   font-size: 0.95rem;
   margin-bottom: 2rem;
+}
+
+.cheatsheet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cheatsheet-card {
+  display: block;
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.cheatsheet-card:hover {
+  border-color: var(--accent);
+  background: rgba(124, 156, 255, 0.08);
+  text-decoration: none;
+  color: var(--text);
+}
+
+.cheatsheet-card-title {
+  display: block;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.cheatsheet-card-desc {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.bigo-example-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.bigo-example-block h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+}
+
+.bigo-example-block .bigo-example-desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.bigo-example-block .bigo-example-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.bigo-example-block .bigo-example-reason {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
 }
 
 .cheatsheet-section {

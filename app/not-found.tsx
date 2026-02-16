@@ -5,7 +5,7 @@ export default function NotFound() {
     <div className="solution-view">
       <h1>Not found</h1>
       <p>The problem or solution you’re looking for doesn’t exist.</p>
-      <Link href="/">← Back to table of contents</Link>
+      <Link href="/problems">← Back to table of contents</Link>
     </div>
   );
 }

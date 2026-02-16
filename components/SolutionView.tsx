@@ -35,7 +35,7 @@ export function SolutionView({ problem, solution, code }: SolutionViewProps) {
 
   return (
     <main className="solution-view">
-      <Link className="back" href="/">
+      <Link className="back" href="/problems">
         ← Back to table of contents
       </Link>
       <h1>{problem.title}</h1>

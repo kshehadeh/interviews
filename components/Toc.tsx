@@ -12,11 +12,6 @@ export function Toc({ problems }: TocProps) {
       <p className="subtitle">
         Click a solution to see an animated visualization, complexity, and explanation.
       </p>
-      <div className="toc-quick-ref">
-        <Link className="cheatsheet-link" href="/cheatsheet">
-          📋 Interview cheat sheet
-        </Link>
-      </div>
       <div>
         {problems.map((problem) => (
           <div key={problem.id} className="problem-card">
@@ -27,7 +22,7 @@ export function Toc({ problems }: TocProps) {
                 <Link
                   key={sol.id}
                   className="solution-link"
-                  href={`/${problem.id}/${sol.id}`}
+                  href={`/problems/${problem.id}/${sol.id}`}
                 >
                   <span className={`verdict-dot ${sol.verdict}`} />
                   {sol.name}
