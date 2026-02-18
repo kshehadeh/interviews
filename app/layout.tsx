@@ -23,10 +23,10 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <div className="app">
-          <nav className="app-nav">
-            <Link href="/problems">Problems</Link>
-            <Link href="/cheatsheet">Cheatsheets</Link>
+        <div className="w-full mx-auto p-8">
+          <nav className="flex items-center gap-6 mb-8 pb-4 border-b border-border">
+            <Link href="/problems" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Problems</Link>
+            <Link href="/cheatsheet" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Cheatsheets</Link>
           </nav>
           {children}
         </div>

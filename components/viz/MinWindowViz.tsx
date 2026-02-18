@@ -165,16 +165,18 @@ export function MinWindowViz({ mode, example = DEFAULT_EXAMPLE }: MinWindowVizPr
   const result = step ? getResult(step, text) : { display: 'Best window: —', found: false };
 
   return (
-    <div className="min-window-viz">
-      <div className="text-row">
-        <span className="label">text</span>
-        <span className="chars">
+    <div className="font-mono text-[1.1rem]">
+      <div className="mb-2">
+        <span className="inline-block w-20 text-muted text-[0.8rem]">text</span>
+        <span className="inline-flex flex-wrap gap-0.5 tracking-wide">
           {text.split('').map((ch, i) => (
             <span
               key={i}
-              className={`char ${i >= left && i <= right ? 'in-window' : ''} ${
+              className={`inline-flex items-center justify-center min-w-7 h-8 py-0 px-0.5 rounded bg-bg border border-border transition-[background,border-color,color] ${
+                i >= left && i <= right ? 'bg-accent/20 border-accent text-accent' : ''
+              } ${
                 result.bestStart != null && result.bestLen != null && i >= result.bestStart && i < result.bestStart + result.bestLen && step?.type === 'done'
-                  ? 'required-match'
+                  ? 'shadow-[0_0_0_2px_var(--color-good)]'
                   : ''
               }`}
             >
@@ -183,32 +185,48 @@ export function MinWindowViz({ mode, example = DEFAULT_EXAMPLE }: MinWindowVizPr
           ))}
         </span>
       </div>
-      <div className="text-row">
-        <span className="label">required</span>
-        <span className="chars">{required}</span>
+      <div className="mb-2">
+        <span className="inline-block w-20 text-muted text-[0.8rem]">required</span>
+        <span className="inline-flex flex-wrap gap-0.5 tracking-wide">{required}</span>
       </div>
-      <div className="pointers">
-        <div className="pointer-row">
-          <span className="pointer-dot left" /> left
+      <div className="mt-3 flex gap-4 text-[0.8rem] text-muted">
+        <div className="flex items-center gap-1.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-amber-500" /> left
         </div>
-        <div className="pointer-row">
-          <span className="pointer-dot right" /> right
+        <div className="flex items-center gap-1.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-cyan-500" /> right
         </div>
       </div>
-      <div className={`status ${status.valid ? 'valid' : ''}`}>{status.text}</div>
-      <div className={`result ${result.found ? 'found' : 'empty'}`}>{result.display}</div>
+      <div className={`mt-3 py-2 px-3 bg-bg rounded-[var(--radius-sm)] text-[0.85rem] text-muted ${status.valid ? 'text-good bg-good/10' : ''}`}>
+        {status.text}
+      </div>
+      <div className={`mt-4 py-3 px-4 rounded-[var(--radius-sm)] font-mono text-base font-medium ${result.found ? 'bg-good/15 text-good border border-good/40' : 'text-muted'}`}>
+        {result.display}
+      </div>
 
-      <div className="viz-controls">
-        <button type="button" className="primary" onClick={playPause}>
+      <div className="flex items-center gap-3 mt-4 flex-wrap">
+        <button
+          type="button"
+          className="py-2 px-4 rounded-[var(--radius-sm)] bg-accent border border-accent text-bg font-sans text-[0.9rem] cursor-pointer hover:bg-accent-dim hover:border-accent-dim"
+          onClick={playPause}
+        >
           {playing ? 'Pause' : 'Play'}
         </button>
-        <button type="button" onClick={stepOnce}>
+        <button
+          type="button"
+          className="py-2 px-4 rounded-[var(--radius-sm)] border border-border bg-bg text-text font-sans text-[0.9rem] cursor-pointer transition-[border-color,background] hover:border-accent hover:bg-accent/10"
+          onClick={stepOnce}
+        >
           Step
         </button>
-        <button type="button" onClick={reset}>
+        <button
+          type="button"
+          className="py-2 px-4 rounded-[var(--radius-sm)] border border-border bg-bg text-text font-sans text-[0.9rem] cursor-pointer transition-[border-color,background] hover:border-accent hover:bg-accent/10"
+          onClick={reset}
+        >
           Reset
         </button>
-        <span className="speed-label">Speed:</span>
+        <span className="text-[0.85rem] text-muted">Speed:</span>
         <input
           type="range"
           min={200}
@@ -216,6 +234,7 @@ export function MinWindowViz({ mode, example = DEFAULT_EXAMPLE }: MinWindowVizPr
           step={100}
           value={speed}
           onChange={(e) => setSpeed(Number(e.target.value))}
+          className="w-[100px] accent-accent"
         />
       </div>
     </div>

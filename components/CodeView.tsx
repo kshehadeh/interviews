@@ -9,7 +9,7 @@ interface CodeViewProps {
 
 export function CodeView({ code }: CodeViewProps) {
   return (
-    <div className="code-view">
+    <div className="bg-surface border border-border rounded-[var(--radius-card)] mb-6 overflow-hidden">
       <SyntaxHighlighter
         language="typescript"
         style={oneDark}

@@ -46,10 +46,10 @@ function TreeNode({
 }) {
   const isCurrent = currentId === node.id;
   return (
-    <div className="tree-node-wrap" style={{ marginLeft: depth * 16 }}>
-      <div className={`tree-node ${isCurrent ? 'current' : ''}`}>
-        <span className="tree-node-type">{node.type}</span>
-        <span className="tree-node-id">{node.id}</span>
+    <div className="mb-1" style={{ marginLeft: depth * 16 }}>
+      <div className={`inline-flex items-center gap-2 py-1 px-2 rounded-[var(--radius-sm)] bg-bg border border-border transition-[background,border-color] ${isCurrent ? 'bg-accent/20 border-accent text-accent' : ''}`}>
+        <span className="font-medium">{node.type}</span>
+        <span className="text-muted text-[0.8em]">{node.id}</span>
       </div>
       {node.children?.map((child) => (
         <TreeNode
@@ -145,48 +145,62 @@ export function TreeSearchViz({ mode, example = DEFAULT_TREE }: TreeSearchVizPro
         : '—';
 
   return (
-    <div className="tree-search-viz">
-      <div className="tree-search-row">
-        <div className="tree-panel">
-          <div className="tree-label">Component tree</div>
+    <div className="font-mono text-[0.9rem]">
+      <div className="flex gap-8 flex-wrap">
+        <div className="flex-1 min-w-[200px]">
+          <div className="text-muted text-[0.8rem] mb-2">Component tree</div>
           <TreeNode node={tree} currentId={currentId} depth={0} />
         </div>
-        <div className="tree-result-panel">
-          <div className="tree-label">
+        <div className="flex-1 min-w-[200px]">
+          <div className="text-muted text-[0.8rem] mb-2">
             {step?.type === 'done'
               ? `Matches for "${targetType}"`
               : mode === 'collector'
                 ? 'Matches (collector)'
                 : 'Result (traversal order)'}
           </div>
-          <div className="tree-result-list">
+          <div className="flex flex-col gap-1 min-h-[80px]">
             {(step?.type === 'done' ? matches : resultSoFar)?.map((n) => (
               <div
                 key={n.id}
-                className={`tree-result-item ${n.type === targetType ? 'match' : ''} ${n.id === currentId ? 'current' : ''}`}
+                className={`inline-flex items-center gap-2 py-1 px-2 rounded-[var(--radius-sm)] bg-bg border border-border w-fit ${
+                  n.id === currentId ? 'border-accent bg-accent/15' : ''
+                } ${n.type === targetType ? 'border-good bg-good/10' : ''}`}
               >
-                <span className="tree-node-type">{n.type}</span>
-                <span className="tree-node-id">{n.id}</span>
+                <span className="font-medium">{n.type}</span>
+                <span className="text-muted text-[0.8em]">{n.id}</span>
               </div>
             ))}
-            {!step && <span className="tree-result-empty">—</span>}
+            {!step && <span className="text-muted">—</span>}
           </div>
         </div>
       </div>
-      <div className={`tree-status ${step?.type === 'done' ? 'done' : ''}`}>
+      <div className={`mt-4 py-2 px-3 bg-bg rounded-[var(--radius-sm)] text-[0.85rem] text-muted ${step?.type === 'done' ? 'text-good bg-good/10' : ''}`}>
         {statusMessage}
       </div>
-      <div className="viz-controls">
-        <button type="button" className="primary" onClick={playPause}>
+      <div className="flex items-center gap-3 mt-4 flex-wrap">
+        <button
+          type="button"
+          className="py-2 px-4 rounded-[var(--radius-sm)] bg-accent border border-accent text-bg font-sans text-[0.9rem] cursor-pointer hover:bg-accent-dim hover:border-accent-dim"
+          onClick={playPause}
+        >
           {playing ? 'Pause' : 'Play'}
         </button>
-        <button type="button" onClick={stepOnce}>
+        <button
+          type="button"
+          className="py-2 px-4 rounded-[var(--radius-sm)] border border-border bg-bg text-text font-sans text-[0.9rem] cursor-pointer transition-[border-color,background] hover:border-accent hover:bg-accent/10"
+          onClick={stepOnce}
+        >
           Step
         </button>
-        <button type="button" onClick={reset}>
+        <button
+          type="button"
+          className="py-2 px-4 rounded-[var(--radius-sm)] border border-border bg-bg text-text font-sans text-[0.9rem] cursor-pointer transition-[border-color,background] hover:border-accent hover:bg-accent/10"
+          onClick={reset}
+        >
           Reset
         </button>
-        <span className="speed-label">Speed:</span>
+        <span className="text-[0.85rem] text-muted">Speed:</span>
         <input
           type="range"
           min={200}
@@ -194,6 +208,7 @@ export function TreeSearchViz({ mode, example = DEFAULT_TREE }: TreeSearchVizPro
           step={100}
           value={speed}
           onChange={(e) => setSpeed(Number(e.target.value))}
+          className="w-[100px] accent-accent"
         />
       </div>
     </div>

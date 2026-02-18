@@ -15,20 +15,23 @@ const CHEATSHEETS = [
 
 export default function CheatsheetHubPage() {
   return (
-    <main className="cheatsheet">
-      <Link className="back" href="/problems">
+    <main className="max-w-[720px]">
+      <Link className="mb-6 text-[0.9rem] text-muted block" href="/problems">
         ← Back to table of contents
       </Link>
-      <h1>Cheat sheets</h1>
-      <p className="cheatsheet-intro">
+      <h1 className="text-2xl font-semibold mt-0 mb-2 tracking-tight">Cheat sheets</h1>
+      <p className="text-muted text-[0.95rem] mb-8">
         Pick a topic for a quick reference.
       </p>
-      <ul className="cheatsheet-list">
+      <ul className="list-none p-0 m-0 flex flex-col gap-3">
         {CHEATSHEETS.map(({ href, title, description }) => (
           <li key={href}>
-            <Link href={href} className="cheatsheet-card">
-              <span className="cheatsheet-card-title">{title}</span>
-              <span className="cheatsheet-card-desc">{description}</span>
+            <Link
+              href={href}
+              className="block py-4 px-5 bg-surface border border-border rounded-[var(--radius-card)] text-text transition-[border-color,background] hover:border-accent hover:bg-accent/10 hover:no-underline"
+            >
+              <span className="block font-semibold text-base mb-1">{title}</span>
+              <span className="block text-[0.9rem] text-muted">{description}</span>
             </Link>
           </li>
         ))}
