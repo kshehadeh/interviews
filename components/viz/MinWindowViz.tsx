@@ -139,17 +139,19 @@ export function MinWindowViz({ mode, example = DEFAULT_EXAMPLE }: MinWindowVizPr
     setPlaying(true);
   }, [playing]);
 
+  const delayMs = 200 + 1500 - speed; // higher slider = faster (lower delay)
+
   useEffect(() => {
     if (!playing) return;
     function tick() {
       const continuePlaying = runStep();
-      if (continuePlaying) timeoutRef.current = setTimeout(tick, speed);
+      if (continuePlaying) timeoutRef.current = setTimeout(tick, delayMs);
     }
-    timeoutRef.current = setTimeout(tick, speed);
+    timeoutRef.current = setTimeout(tick, delayMs);
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [playing, speed, runStep]);
+  }, [playing, speed, delayMs, runStep]);
 
   useEffect(() => {
     reset();

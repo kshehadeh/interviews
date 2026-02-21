@@ -55,6 +55,24 @@ export interface RatelimitExample {
   windowMs: number;
 }
 
+export interface ReverseNumberCase {
+  input: number;
+  expected: number;
+}
+
+export interface ReverseNumberExample {
+  cases: ReverseNumberCase[];
+}
+
+export interface SortedSquaresExample {
+  input: number[];
+}
+
+export interface SearchArrayExample {
+  arr: number[];
+  target: number;
+}
+
 export interface Problem {
   id: string;
   title: string;
@@ -64,5 +82,8 @@ export interface Problem {
   dedupeExample?: DedupeExample;
   dependenciesExample?: DependenciesExample;
   ratelimitExample?: RatelimitExample;
+  reverseNumberExample?: ReverseNumberExample;
+  sortedSquaresExample?: SortedSquaresExample;
+  searchArrayExample?: SearchArrayExample;
   solutions: Solution[];
 }

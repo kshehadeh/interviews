@@ -7,6 +7,9 @@ import { DependenciesViz } from './viz/DependenciesViz';
 import { DedupeViz } from './viz/DedupeViz';
 import { MinWindowViz } from './viz/MinWindowViz';
 import { RatelimitViz } from './viz/RatelimitViz';
+import { ReverseNumberViz } from './viz/ReverseNumberViz';
+import { SearchArrayViz } from './viz/SearchArrayViz';
+import { SortedSquaresViz } from './viz/SortedSquaresViz';
 import { TreeSearchViz } from './viz/TreeSearchViz';
 
 interface SolutionViewProps {
@@ -41,6 +44,15 @@ export function SolutionView({ problem, solution, code }: SolutionViewProps) {
     }
     if (solution.vizKey === 'ratelimit' && problem.ratelimitExample) {
       return <RatelimitViz example={problem.ratelimitExample} />;
+    }
+    if (solution.vizKey === 'reverse-number' && problem.reverseNumberExample) {
+      return <ReverseNumberViz example={problem.reverseNumberExample} />;
+    }
+    if (solution.vizKey === 'sorted-squares' && problem.sortedSquaresExample) {
+      return <SortedSquaresViz example={problem.sortedSquaresExample} />;
+    }
+    if (solution.vizKey === 'search-array' && problem.searchArrayExample) {
+      return <SearchArrayViz example={problem.searchArrayExample} />;
     }
     return null;
   };

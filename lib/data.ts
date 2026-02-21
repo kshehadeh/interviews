@@ -198,4 +198,91 @@ export const PROBLEMS_DATA: Problem[] = [
       },
     ],
   },
+  {
+    id: 'reverse-number',
+    title: 'Reverse Integer',
+    description:
+      'Given a 32-bit signed integer, reverse its digits. Return 0 if the reversed value would overflow the 32-bit signed integer range. Preserve the sign of the input.',
+    reverseNumberExample: {
+      cases: [
+        { input: 123, expected: 321 },
+        { input: -123, expected: -321 },
+        { input: 0, expected: 0 },
+        { input: 120, expected: 21 },
+      ],
+    },
+    solutions: [
+      {
+        id: 'solution1',
+        name: 'Digit extraction with place values',
+        description:
+          'Compute the number of digits via log10, then iterate using forward/backward place values (sigForward, sigBackward) to extract digits and rebuild the reversed number.',
+        time: 'O(log₁₀ n)',
+        space: 'O(1)',
+        verdict: 'bad',
+        verdictReason:
+          'Uses floating point (Math.log10, Math.pow) and a single overflow check (newNumber > 2³¹) that is wrong for positive numbers: it allows 2³¹ when max positive is 2³¹−1. More state (two place-value counters) and harder to follow than the mod-10 approach.',
+        vizKey: 'reverse-number',
+      },
+      {
+        id: 'solution2',
+        name: 'Pop digit (mod 10) with overflow check',
+        description:
+          'Repeatedly pop the last digit (x % 10), integer-divide x by 10, then push onto result (result * 10 + digit). Before each push, check that result would not exceed the 32-bit limit using the correct bound for sign.',
+        time: 'O(log₁₀ n)',
+        space: 'O(1)',
+        verdict: 'good',
+        verdictReason:
+          'Integer-only arithmetic, no log or float. Single loop with one digit extraction and one overflow check per step. Correct bounds: positive result ≤ 2³¹−1, negative magnitude ≤ 2³¹. Standard interview solution.',
+        vizKey: 'reverse-number',
+      },
+    ],
+  },
+  {
+    id: 'sorted-squares',
+    title: 'Squares of a Sorted Array',
+    description:
+      'Given an integer array sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order. Use O(n) time and O(n) space (excluding output).',
+    sortedSquaresExample: {
+      input: [-4, -1, 0, 3, 10],
+    },
+    solutions: [
+      {
+        id: 'solution1',
+        name: 'Two pointers (fill from end)',
+        description:
+          'Left pointer i at start, right pointer j at end. Compare |nums[i]| and |nums[j]|; place the larger square at the end of the result (position p), then move the chosen pointer. Fill from the end so the result is sorted.',
+        time: 'O(n)',
+        space: 'O(n)',
+        verdict: 'good',
+        verdictReason:
+          'Single pass over the array. Each element is compared and written once. Optimal for this problem.',
+        vizKey: 'sorted-squares',
+      },
+    ],
+  },
+  {
+    id: 'search-array',
+    title: 'Binary Search (Sorted Array)',
+    description:
+      'Given a sorted array of integers and a target value, return the index of the target if it exists, otherwise return -1. Use binary search: repeatedly compare the middle element to the target and narrow the search range.',
+    searchArrayExample: {
+      arr: Array.from({ length: 100 }, (_, i) => i + 1),
+      target: 81,
+    },
+    solutions: [
+      {
+        id: 'solution1',
+        name: 'Binary search (iterative)',
+        description:
+          'Maintain left and right bounds; at each step compute mid = floor((left+right)/2). If arr[mid] === target, return mid; if arr[mid] < target, search right (left = mid+1); else search left (right = mid-1).',
+        time: 'O(log n)',
+        space: 'O(1)',
+        verdict: 'good',
+        verdictReason:
+          'Each step halves the search range. Optimal for sorted array search.',
+        vizKey: 'search-array',
+      },
+    ],
+  },
 ];

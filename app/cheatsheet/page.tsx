@@ -11,6 +11,16 @@ const CHEATSHEETS = [
     title: 'Interview tips',
     description: 'Patterns, string problems, tokenization, TypeScript tips, pacing, and end questions.',
   },
+  {
+    href: '/cheatsheet/two-pointers',
+    title: 'Two Pointers',
+    description: 'Opposite-ends and two-iterables patterns, complexity, and common use cases from the LeetCode crash course.',
+  },
+  {
+    href: '/cheatsheet/sliding-window',
+    title: 'Sliding Window',
+    description: 'Dynamic and fixed-size windows, counting subarrays, and comparison with two pointers from the LeetCode crash course.',
+  },
 ] as const;
 
 export default function CheatsheetHubPage() {
