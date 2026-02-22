@@ -27,6 +27,8 @@ export default function RootLayout({
           <nav className="flex items-center gap-6 mb-8 pb-4 border-b border-border">
             <Link href="/problems" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Problems</Link>
             <Link href="/cheatsheet" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Cheatsheets</Link>
+            <Link href="/concepts" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Concepts</Link>
+            <Link href="/debugging" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Debugging</Link>
           </nav>
           {children}
         </div>

@@ -20,6 +20,12 @@ export default function HomePage() {
             Big O notation, interview patterns, and quick reference guides.
           </span>
         </Link>
+        <Link href="/debugging" className="flex flex-col p-6 bg-surface border border-border rounded-[var(--radius-card)] text-text no-underline transition-[border-color,background,transform] hover:border-accent hover:bg-accent/10 hover:-translate-y-0.5">
+          <span className="text-xl font-semibold mb-2">Debugging</span>
+          <span className="text-[0.9rem] text-muted leading-[1.45]">
+            Stale closures, React gotchas, and how to fix them in interviews.
+          </span>
+        </Link>
       </div>
     </main>
   );
