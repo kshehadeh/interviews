@@ -25,6 +25,7 @@ export default function RootLayout({
       <body>
         <div className="w-full mx-auto p-8">
           <nav className="flex items-center gap-6 mb-8 pb-4 border-b border-border">
+            <Link href="/" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Home</Link>
             <Link href="/problems" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Problems</Link>
             <Link href="/cheatsheet" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Cheatsheets</Link>
             <Link href="/concepts" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Concepts</Link>
