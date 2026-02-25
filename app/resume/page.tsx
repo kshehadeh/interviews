@@ -15,8 +15,62 @@ const tocItems = [
   { id: 'ai-filters', label: 'AI & Recruiter Filters' },
   { id: 'standing-out', label: 'Standing Out (Without Gaming)' },
   { id: 'ai-interviews', label: 'AI Era: Interviews & Layoffs' },
+  { id: 'ai-review', label: 'Using AI to Review Your Resume' },
   { id: 'final-advice', label: 'Final Advice' },
 ];
+
+const RESUME_REVIEW_PROMPT = `You are a senior engineering hiring manager reviewing a resume for a mid–senior software engineering role.
+
+Context:
+- The market is flooded with AI-generated and exaggerated resumes.
+- You are skeptical by default and looking for signals of real-world experience.
+- You care more about credibility, clarity, and impact than buzzwords or polish.
+
+Task:
+Review the resume below and provide a structured critique. Do NOT rewrite the resume unless explicitly asked.
+
+Evaluate the resume across the following dimensions:
+
+1. Credibility & Authenticity
+- Which bullets feel grounded in real work?
+- Which bullets feel generic, inflated, or AI-generated?
+- Where does the resume lack concrete detail (systems, scale, constraints)?
+
+2. Seniority Signal
+- Does the scope of work match the claimed level?
+- Are there clear signals of ownership, judgment, or tradeoff thinking?
+- Is leadership shown through action rather than titles?
+
+3. Impact & Outcomes
+- Are outcomes and results clear?
+- Are metrics used effectively and plausibly?
+- Where could impact be made clearer without exaggeration?
+
+4. Technical Depth & Focus
+- Is the skill set coherent or overly broad?
+- Are there areas where depth should be emphasized instead of breadth?
+- Do the listed skills align with the experience bullets?
+
+5. Resume Smells & Risk Flags
+- Identify any red flags that might trigger skepticism from recruiters or hiring managers.
+- Call out overused phrases, symmetry, buzzwords, or implausible claims.
+
+6. Interview Readiness
+- What interview questions would you ask to validate the claims on this resume?
+- Where is the candidate likely to struggle if probed deeper?
+
+7. Concrete Improvement Suggestions
+- Provide specific, actionable suggestions to improve credibility and clarity.
+- Focus on tightening language, adding specificity, or removing weak content.
+- Do NOT add new accomplishments that are not present.
+
+Tone:
+- Direct, honest, and professional.
+- Assume the candidate is experienced and capable.
+- Avoid generic advice or platitudes.
+
+Resume:
+[PASTE RESUME HERE]`;
 
 export default function ResumePage() {
   return (
@@ -552,6 +606,35 @@ export default function ResumePage() {
               <div className="guide-callout-label">Final opinion</div>
               The era of &ldquo;perfect resumes&rdquo; is ending. The next phase rewards credible detail, honest scope, clear thinking, and human language. In a sea of synthetic resumes, sounding like an actual engineer is now a competitive advantage.
             </div>
+          </section>
+
+          <hr className="border-border my-10" />
+
+          <section id="ai-review" className="mb-10 scroll-mt-8">
+            <header className="guide-section-header">
+              <span className="guide-section-num" aria-hidden>17</span>
+              <h2 className="guide-section-title">Using AI to Review Your Resume</h2>
+            </header>
+            <p className="text-text text-[0.95rem] leading-[1.6] mb-4">
+              You can use an LLM to get a hiring-manager-style critique of your resume. The goal is feedback that stresses credibility and clarity, not polish. Use a prompt that assumes a skeptical reader and asks for structured, actionable feedback without rewriting your content.
+            </p>
+            <div className="guide-card mb-4">
+              <div className="guide-card-title">How to use it</div>
+              <ol className="list-decimal pl-5 space-y-1 text-[0.9rem] m-0">
+                <li>Copy the prompt below.</li>
+                <li>Paste it into your preferred AI tool (e.g. Claude, ChatGPT).</li>
+                <li>Replace <code className="px-1 py-0.5 rounded bg-border text-[0.85em] font-mono">[PASTE RESUME HERE]</code> with your resume text.</li>
+                <li>Run the prompt and use the critique to tighten language, add specificity, and fix red flags. Do not ask the model to invent new accomplishments.</li>
+              </ol>
+            </div>
+            <div className="guide-callout guide-callout-tip mb-4">
+              <div className="guide-callout-label">Why this prompt works</div>
+              It frames the AI as a skeptical hiring manager in the current market, evaluates credibility and seniority signals, and asks for concrete improvements without rewriting. It explicitly tells the model not to add accomplishments that aren&apos;t there.
+            </div>
+            <p className="text-muted text-[0.875rem] mb-2">Prompt (copy the entire block):</p>
+            <pre className="bg-surface border border-border rounded-[var(--radius-card)] p-4 text-[0.8rem] font-mono text-text leading-[1.5] overflow-x-auto whitespace-pre-wrap break-words">
+              {RESUME_REVIEW_PROMPT}
+            </pre>
           </section>
 
           <hr className="border-border my-10" />
