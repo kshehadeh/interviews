@@ -30,6 +30,7 @@ export default function RootLayout({
             <Link href="/cheatsheet" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Cheatsheets</Link>
             <Link href="/concepts" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Concepts</Link>
             <Link href="/debugging" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Debugging</Link>
+            <Link href="/resume" className="font-medium text-[0.95rem] hover:no-underline hover:text-accent-dim">Resume</Link>
           </nav>
           {children}
         </div>
